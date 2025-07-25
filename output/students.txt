@@ -1,0 +1,8 @@
+Student Name = Danial Ahmed
+Roll Number = 23
+Marks = 12.00
+
+Student Name = Saad Khan
+Roll Number = 12
+Marks = 3.00
+

@@ -1,0 +1,7 @@
+apple
+banana
+computer
+hangman
+programming
+chatbot
+development
