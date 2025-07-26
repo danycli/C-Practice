@@ -14,7 +14,7 @@ int main(){
 	scanf("%d",&num_1);
 	int num_2;
 	printf("Enter second Number :");
-	scanf("%d",&num_2)
+	scanf("%d",&num_2);
 	if (a=='+'){
 		printf("Sum is :%d\n",sum);
 		printf("Thank You....");
