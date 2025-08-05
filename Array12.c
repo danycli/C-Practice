@@ -84,7 +84,7 @@ int main()
                 check = 0;
             }
         }
-    }
+    }w
     if (check == 1)
     {
         printf("The array is sorted");
