@@ -147,69 +147,6 @@ void table(char *a)
     printf("╝");
 }
 
-void turns(char *roll, int randnum, char *roll1, int randnum1)
-{
-    player1();
-    while (1)
-    {
-        *roll = getch();
-        if (*roll == '\r')
-        {
-            int min = 1;
-            int max = 6;
-
-            srand(time(NULL));
-            int randomNumber = min + rand() % (max - min + 1);
-            randnum = randomNumber;
-            clearScreen();
-            printf("\n");
-            for (int i = 0; i < (120 - 50) / 2; i++)
-            {
-                printf(" ");
-            }
-            printf("Dice = %d", randnum);
-            printf("\n");
-
-            if (randnum != 6)
-                break;
-        }
-        else
-        {
-            printf("\nInvalid Input!\nTry again.....\n");
-        }
-    }
-
-    player2();
-    while (1)
-    {
-        *roll1 = getch();
-        if (*roll1 == '\r')
-        {
-            int min = 1;
-            int max = 6;
-
-            srand(time(NULL));
-            int randomNumber = min + rand() % (max - min + 1);
-            randnum1 = randomNumber;
-            clearScreen();
-            printf("\n");
-            for (int i = 0; i < (120 - 50) / 2; i++)
-            {
-                printf(" ");
-            }
-            printf("Dice = %d", randnum1);
-            printf("\n");
-
-            if (randnum1 != 6)
-                break;
-        }
-        else
-        {
-            printf("\nInvalid Input!\nTry again.....\n");
-        }
-    }
-}
-
 int main()
 {
     system("chcp 65001 > nul");
@@ -221,6 +158,8 @@ int main()
     int randnum = 0;
     char roll1;
     int randnum1 = 0;
+    int count1 = 0;
+    int count2 = 0;
 
     while (1)
     {
@@ -278,7 +217,125 @@ int main()
     table(a);
     printf("\n");
     
-    turns(&roll,randnum,&roll1,randnum1);
+    while(1){
+        player1();
+    if (count1 <= 0)
+    {
+        roll = getch();
+        if (roll == '\r')
+        {
+            int min = 1;
+            int max = 6;
+
+            srand(time(NULL));
+            int randomNumber = min + rand() % (max - min + 1);
+            randnum = randomNumber;
+            clearScreen();
+            printf("\n");
+            for (int i = 0; i < (120 - 50) / 2; i++)
+            {
+                printf(" ");
+            }
+            printf("Dice = %d", randnum);
+            printf("\n");
+
+            if (randnum == 6){
+                printf("Card1 has moved");
+                count1 = count1 + 1;
+            }
+            else{
+                printf("Card1 not moved");
+            }
+        }
+        else
+        {
+            printf("\nInvalid Input!\nTry again.....\n");
+        }
+    }else{
+        roll = getch();
+        if (roll == '\r')
+        {
+            int min = 1;
+            int max = 6;
+
+            srand(time(NULL));
+            int randomNumber = min + rand() % (max - min + 1);
+            randnum = randomNumber;
+            clearScreen();
+            printf("\n");
+            for (int i = 0; i < (120 - 50) / 2; i++)
+            {
+                printf(" ");
+            }
+            printf("Dice = %d", randnum);
+            printf("\n");
+            printf("(else)Card 1 has moved");
+        }
+        else
+        {
+            printf("\nInvalid Input!\nTry again.....\n");
+        }
+    }
+
+    player2();
+    if (count2 <= 0)
+    {
+        roll1 = getch();
+        if (roll1 == '\r')
+        {
+            int min = 1;
+            int max = 6;
+
+            srand(time(NULL));
+            int randomNumber = min + rand() % (max - min + 1);
+            randnum1 = randomNumber;
+            clearScreen();
+            printf("\n");
+            for (int i = 0; i < (120 - 50) / 2; i++)
+            {
+                printf(" ");
+            }
+            printf("Dice = %d", randnum1);
+            printf("\n");
+
+            if (randnum1 != 6){
+                printf("Card2 not moved");
+            }
+            else{
+                printf("Card2 has moved");
+                count2++;
+            }
+        }
+        else
+        {
+            printf("\nInvalid Input!\nTry again.....\n");
+        }
+    }else{
+        roll1 = getch();
+        if (roll1 == '\r')
+        {
+            int min = 1;
+            int max = 6;
+
+            srand(time(NULL));
+            int randomNumber = min + rand() % (max - min + 1);
+            randnum1 = randomNumber;
+            clearScreen();
+            printf("\n");
+            for (int i = 0; i < (120 - 50) / 2; i++)
+            {
+                printf(" ");
+            }
+            printf("Dice = %d", randnum1);
+            printf("\n");
+            printf("(else)Card2 has moved");
+        }
+        else
+        {
+            printf("\nInvalid Input!\nTry again.....\n");
+        }
+    }
+    }
 
     return 0;
 }
