@@ -17,6 +17,74 @@ void spacing()
     }
 }
 
+void snakesLadders(int *rounds2)
+{
+    if (*rounds2 == 3)
+    {
+        *rounds2 += 18;
+    }
+    else if (*rounds2 == 26)
+    {
+        *rounds2 -= 18;
+    }
+    else if (*rounds2 == 43)
+    {
+        *rounds2 += 22;
+    }
+    else if (*rounds2 == 57)
+    {
+        *rounds2 -= 17;
+    }
+    else if (*rounds2 == 72)
+    {
+        *rounds2 += 22;
+    }
+    else if (*rounds2 == 98)
+    {
+        *rounds2 -= 20;
+    }
+}
+
+void dice(int randnum)
+{
+    if (randnum == 1)
+    {
+        spacing();
+        printf("Dice = %d (⚀)", randnum);
+        printf("\n");
+    }
+    else if (randnum == 2)
+    {
+        spacing();
+        printf("Dice = %d (⚁)", randnum);
+        printf("\n");
+    }
+    else if (randnum == 3)
+    {
+        spacing();
+        printf("Dice = %d (⚂)", randnum);
+        printf("\n");
+    }
+    else if (randnum == 4)
+    {
+        spacing();
+        printf("Dice = %d (⚃)", randnum);
+        printf("\n");
+    }
+    else if (randnum == 5)
+    {
+        spacing();
+        printf("Dice = %d (⚄)", randnum);
+        printf("\n");
+    }
+    else
+    {
+        spacing();
+        printf("Dice = %d (⚅)", randnum);
+        printf("\n");
+    }
+}
+
 void clearScreen()
 {
 #ifdef _WIN32
@@ -33,7 +101,7 @@ void player1()
     {
         printf(" ");
     }
-    printf(BOLD "Player's 1 turn (♞ )\n" RESET);
+    printf(BOLD "Player's 1 turn (\033[1;31m♞ \033[33m)\n" RESET);
 
     for (int i = 0; i < (120 - 50) / 2; i++)
     {
@@ -48,7 +116,7 @@ void player2()
     {
         printf(" ");
     }
-    printf("Player's 2 turn (♛ )\n");
+    printf("Player's 2 turn (\033[1;37m♛ \033[33m)\n");
 
     for (int i = 0; i < (120 - 50) / 2; i++)
     {
@@ -110,7 +178,7 @@ void table(char *a, int rounds1, int rounds2)
                     {
                         if (rounds1 == num)
                         {
-                            printf("\033[1;32m ♞  \033[0m");
+                            printf("\033[1;31m ♞  \033[33m");
                         }
                         else if (rounds2 == num)
                         {
@@ -120,9 +188,57 @@ void table(char *a, int rounds1, int rounds2)
                         {
                             printf("\033[1;36m%d\033[33m ", num);
                         }
+                        else if (num == 21)
+                        {
+                            printf("\033[38;2;101;67;33m %d \033[0m", num);
+                        }
+                        else if (num == 26)
+                        {
+                            printf(" 🐍 ");
+                        }
+                        else if (num == 57)
+                        {
+                            printf(" 🐍 ");
+                        }
+                        else if (num == 40)
+                        {
+                            printf("\033[38;2;70;255;70m %d \033[0m", num);
+                        }
+                        else if (num == 98)
+                        {
+                            printf(" 🐍 ");
+                        }
+                        else if (num == 78)
+                        {
+                            printf("\033[38;2;70;255;70m %d \033[0m", num);
+                        }
+                        else if (num == 43)
+                        {
+                            printf(" 🪜  ");
+                        }
+                        else if (num == 65)
+                        {
+                            printf("\033[38;2;101;67;33m %d \033[0m", num);
+                        }
+                        else if (num == 72)
+                        {
+                            printf(" 🪜  ");
+                        }
+                        else if (num == 94)
+                        {
+                            printf("\033[38;2;101;67;33m %d \033[0m", num);
+                        }
                         else if (num >= 10)
                         {
                             printf(" \033[1;36m%d\033[33m ", num);
+                        }
+                        else if (num == 8)
+                        {
+                            printf("\033[38;2;70;255;70m  %d \033[0m", num);
+                        }
+                        else if (num == 3)
+                        {
+                            printf(" 🪜  ");
                         }
                         else if (num >= 1)
                         {
@@ -192,7 +308,8 @@ int main()
         }
         else
         {
-            printf("Invalid Input!\n Try again.....\n");
+            printf("\033[1;31m\nInvalid Input!\033[33m");
+            printf("\033[1;31mTry again.....\033[33m\n");
         }
     }
     printf("\n\n\n");
@@ -202,8 +319,8 @@ int main()
     }
     printf("\033[35m----SNAKE AND LADDERS----\033[33m\n\n");
     // printf("\033[35m");
-    int boxWidth = 42;
-    int space = (120 - 46) / 2;
+    int boxWidth = 68;
+    int space = (120 - 68) / 2;
     for (int i = 0; i <= space; i++)
     {
         printf(" ");
@@ -218,12 +335,12 @@ int main()
     {
         printf(" ");
     }
-    printf(BOLD "║              -:INSTRUCTIONS:-             ║\n" RESET);
+    printf(BOLD "║                           -:INSTRUCTIONS:-                          ║\n" RESET);
     for (int i = 0; i <= space; i++)
     {
         printf(" ");
     }
-    printf("║   Roll the Dice and reach the end (100)   ║\n");
+    printf("║   Roll the dice🎲, climb ladders🪜 , dodge snakes🐍 , reach 100🎯!   ║\n");
     for (int i = 0; i <= space; i++)
     {
         printf(" ");
@@ -255,9 +372,7 @@ int main()
                     int randomNumber = min + rand() % (max - min + 1);
                     randnum = randomNumber;
                     clearScreen();
-                    spacing();
-                    printf("Dice = %d", randnum);
-                    printf("\n");
+                    dice(randnum);
 
                     if (randnum == 6)
                     {
@@ -277,9 +392,9 @@ int main()
                 {
                     printf("\n");
                     spacing();
-                    printf("Invalid Input!");
+                    printf("\033[1;31mInvalid Input!\033[33m");
                     spacing();
-                    printf("Try Againg...\n");
+                    printf("\033[1;31mTry again.....\033[33m\n");
                 }
             }
         }
@@ -297,12 +412,11 @@ int main()
                     int randomNumber = min + rand() % (max - min + 1);
                     randnum = randomNumber;
                     clearScreen();
-                    spacing();
-                    printf("Dice = %d", randnum);
-                    printf("\n");
+                    dice(randnum);
                     if (rounds1 + randnum <= 100)
                     {
                         rounds1 += randnum;
+                        snakesLadders(&rounds1);
                     }
                     table(a, rounds1, rounds2);
                     break;
@@ -310,14 +424,18 @@ int main()
                 else
                 {
                     spacing();
-                    printf("Invalid Input!\nTry again.....\n");
+                    printf("\033[1;31m\nInvalid Input!\033[33m");
+                    spacing();
+                    printf("\033[1;31mTry again.....\033[33m\n");
                     break;
                 }
             }
             if (rounds1 == 100)
             {
+                printf("\n");
                 spacing();
-                printf("Player 1 Wins! Congratulations\n");
+                printf("          Player 1 Wins! Congratulations🎉\n");
+                printf("\n\n");
                 break;
             }
         }
@@ -336,9 +454,7 @@ int main()
                     int randomNumber = min + rand() % (max - min + 1);
                     randnum1 = randomNumber;
                     clearScreen();
-                    spacing();
-                    printf("Dice = %d", randnum1);
-                    printf("\n");
+                    dice(randnum1);
 
                     if (randnum1 == 6)
                     {
@@ -357,9 +473,9 @@ int main()
                 else
                 {
                     spacing();
-                    printf("\nInvalid Input!");
+                    printf("\033[1;31mInvalid Input!\033[33m");
                     spacing();
-                    printf("Try again.....\n");
+                    printf("\033[1;31mTry again.....\033[33m\n");
                 }
             }
         }
@@ -377,12 +493,11 @@ int main()
                     int randomNumber = min + rand() % (max - min + 1);
                     randnum1 = randomNumber;
                     clearScreen();
-                    spacing();
-                    printf("Dice = %d", randnum1);
-                    printf("\n");
+                    dice(randnum1);
                     if (rounds2 + randnum1 <= 100)
                     {
                         rounds2 += randnum1;
+                        snakesLadders(&rounds2);
                     }
                     table(a, rounds1, rounds2);
                     break;
@@ -390,15 +505,17 @@ int main()
                 else
                 {
                     spacing();
-                    printf("Invalid Input!");
+                    printf("\033[1;31mInvalid Input!\033[0m");
                     spacing();
-                    printf("Try again.....\n");
+                    printf("\033[1;31mTry again.....\033[0m\n");
                 }
             }
             if (rounds2 == 100)
             {
+                printf("\n");
                 spacing();
-                printf("Player 2 Wins! Congratulations\n");
+                printf("          Player 2 Wins! Congratulations🎉\n");
+                printf("\n\n");
                 break;
             }
         }
