@@ -4,14 +4,7 @@
 #include<time.h>
 int main()
 {
-    int min = 10;
-    int max = 20;
-
-    // Seed the random number generator
-    srand(time(NULL)); 
-
-    // Generate and print a random number between min and max (inclusive)
-    int randomNumber = min + rand() % (max - min + 1);
-    printf("Random number between %d and %d: %d\n", min, max, randomNumber);
+system("chcp 65001 > nul");
+printf("\033[1;31m \xF0\x9F\xAA\x9C \033[0m");
 return 0;
 }
