@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -107,7 +106,7 @@ void player1()
     {
         printf(" ");
     }
-    printf("Press Enter to roll the Dice....");
+    printf("Press Enter(⏎ ) to roll the Dice....");
 }
 void player2()
 {
@@ -122,7 +121,7 @@ void player2()
     {
         printf(" ");
     }
-    printf("Press Enter to roll the Dice....");
+    printf("Press Tab(⭾ ) to roll the Dice....");
 }
 
 void table(char *a, int rounds1, int rounds2)
@@ -286,240 +285,290 @@ int main()
 {
     system("chcp 65001 > nul");
     system("color E");
-    char start;
-    printf("\nPress Space to start the game.....\n");
-
-    char roll;
-    int randnum = 0;
-    char roll1;
-    int randnum1 = 0;
-    int count1 = 0;
-    int count2 = 0;
-    int rounds1 = 0;
-    int rounds2 = 0;
 
     while (1)
     {
-        start = getch();
-        if (start == ' ')
+        clearScreen();
+        char start;
+        char roll;
+        int randnum = 0;
+        char roll1;
+        int randnum1 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        int rounds1 = 0;
+        int rounds2 = 0;
+        char choice;
+        int win = 0;
+        printf("\nPress Space to start the game.....\n");
+        while (1)
         {
-            printf("The game has started\n");
-            break;
-        }
-        else
-        {
-            printf("\033[1;31m\nInvalid Input!\033[33m");
-            printf("\033[1;31mTry again.....\033[33m\n");
-        }
-    }
-    printf("\n\n\n");
-    for (int i = 0; i <= (120 - 27) / 2; i++)
-    {
-        printf(" ");
-    }
-    printf("\033[35m----SNAKE AND LADDERS----\033[33m\n\n");
-    // printf("\033[35m");
-    int boxWidth = 68;
-    int space = (120 - 68) / 2;
-    for (int i = 0; i <= space; i++)
-    {
-        printf(" ");
-    }
-    printf("╔");
-    for (int i = 0; i <= boxWidth; i++)
-    {
-        printf("═");
-    }
-    printf("╗\n");
-    for (int i = 0; i <= space; i++)
-    {
-        printf(" ");
-    }
-    printf(BOLD "║                           -:INSTRUCTIONS:-                          ║\n" RESET);
-    for (int i = 0; i <= space; i++)
-    {
-        printf(" ");
-    }
-    printf("║   Roll the dice🎲, climb ladders🪜 , dodge snakes🐍 , reach 100🎯!   ║\n");
-    for (int i = 0; i <= space; i++)
-    {
-        printf(" ");
-    }
-    printf("╚");
-    for (int i = 0; i <= boxWidth; i++)
-    {
-        printf("═");
-    }
-    printf("╝\n\n\n");
-    char a[] = {100};
-    table(a, rounds1, rounds2);
-    printf("\n");
-
-    while (1)
-    {
-        player1();
-        if (count1 <= 0)
-        {
-            while (1)
+            start = getch();
+            if (start == ' ')
             {
-                roll = getch();
-                if (roll == '\r')
+                printf("The game has started\n");
+                break;
+            }
+            else
+            {
+                printf("\033[1;31m\nInvalid Input!\033[33m");
+                printf("\033[1;31mTry again.....\033[33m\n");
+            }
+        }
+        printf("\n\n\n");
+        for (int i = 0; i <= (120 - 27) / 2; i++)
+        {
+            printf(" ");
+        }
+        printf("\033[35m----SNAKE AND LADDERS----\033[33m\n\n");
+        // printf("\033[35m");
+        int boxWidth = 68;
+        int space = (120 - 68) / 2;
+        for (int i = 0; i <= space; i++)
+        {
+            printf(" ");
+        }
+        printf("╔");
+        for (int i = 0; i <= boxWidth; i++)
+        {
+            printf("═");
+        }
+        printf("╗\n");
+        for (int i = 0; i <= space; i++)
+        {
+            printf(" ");
+        }
+        printf(BOLD "║                           -:INSTRUCTIONS:-                          ║\n" RESET);
+        for (int i = 0; i <= space; i++)
+        {
+            printf(" ");
+        }
+        printf("║   Roll the dice🎲, climb ladders🪜 , dodge snakes🐍 , reach 100🎯!   ║\n");
+        for (int i = 0; i <= space; i++)
+        {
+            printf(" ");
+        }
+        printf("╚");
+        for (int i = 0; i <= boxWidth; i++)
+        {
+            printf("═");
+        }
+        printf("╝\n\n\n");
+        char a[] = {100};
+        table(a, rounds1, rounds2);
+        printf("\n");
+
+        while (1)
+        {
+            player1();
+            if (count1 <= 0)
+            {
+                while (1)
                 {
-                    int min = 1;
-                    int max = 6;
-
-                    srand(time(NULL));
-                    int randomNumber = min + rand() % (max - min + 1);
-                    randnum = randomNumber;
-                    clearScreen();
-                    dice(randnum);
-
-                    if (randnum == 6)
+                    roll = getch();
+                    if (roll == '\r')
                     {
-                        rounds1 = rounds1 + 1;
+                        int min = 1;
+                        int max = 6;
+
+                        srand(time(NULL));
+                        int randomNumber = min + rand() % (max - min + 1);
+                        randnum = randomNumber;
+                        clearScreen();
+                        dice(randnum);
+
+                        if (randnum == 6)
+                        {
+                            rounds1 = rounds1 + 1;
+                            table(a, rounds1, rounds2);
+                            count1++;
+                            break;
+                        }
+                        else
+                        {
+                            spacing();
+                            printf("Bring up 6 to get the progress started\n");
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        printf("\n");
+                        spacing();
+                        printf("\033[1;31mInvalid Input!\033[33m");
+                        spacing();
+                        printf("\033[1;31mTry again.....\033[33m\n");
+                    }
+                }
+            }
+            else
+            {
+                while (1)
+                {
+                    roll = getch();
+                    if (roll == '\r')
+                    {
+                        int min = 1;
+                        int max = 6;
+
+                        srand(time(NULL));
+                        int randomNumber = min + rand() % (max - min + 1);
+                        randnum = randomNumber;
+                        clearScreen();
+                        dice(randnum);
+                        if (rounds1 + randnum <= 100)
+                        {
+                            rounds1 += randnum;
+                            snakesLadders(&rounds1);
+                        }
                         table(a, rounds1, rounds2);
-                        count1++;
                         break;
                     }
                     else
                     {
                         spacing();
-                        printf("Bring up 6 to get the progress started\n");
+                        printf("\033[1;31m\nInvalid Input!\033[33m");
+                        spacing();
+                        printf("\033[1;31mTry again.....\033[33m\n");
                         break;
                     }
                 }
-                else
+                if (rounds1 == 100)
                 {
                     printf("\n");
                     spacing();
-                    printf("\033[1;31mInvalid Input!\033[33m");
-                    spacing();
-                    printf("\033[1;31mTry again.....\033[33m\n");
+                    printf("          Player 1 Wins! Congratulations🎉\n");
+                    printf("\n\n");
+                    win = 1;
+                    break;
                 }
             }
-        }
-        else
-        {
-            while (1)
+            player2();
+            if (count2 <= 0)
             {
-                roll = getch();
-                if (roll == '\r')
+                while (1)
                 {
-                    int min = 1;
-                    int max = 6;
-
-                    srand(time(NULL));
-                    int randomNumber = min + rand() % (max - min + 1);
-                    randnum = randomNumber;
-                    clearScreen();
-                    dice(randnum);
-                    if (rounds1 + randnum <= 100)
+                    roll1 = getch();
+                    if (roll1 == '\t')
                     {
-                        rounds1 += randnum;
-                        snakesLadders(&rounds1);
+                        int min = 1;
+                        int max = 6;
+
+                        srand(time(NULL));
+                        int randomNumber = min + rand() % (max - min + 1);
+                        randnum1 = randomNumber;
+                        clearScreen();
+                        dice(randnum1);
+
+                        if (randnum1 == 6)
+                        {
+                            rounds2 = rounds2 + 1;
+                            table(a, rounds1, rounds2);
+                            count2++;
+                            break;
+                        }
+                        else
+                        {
+                            spacing();
+                            printf("Bring up 6 to get the progress started\n");
+                            break;
+                        }
                     }
-                    table(a, rounds1, rounds2);
-                    break;
-                }
-                else
-                {
-                    spacing();
-                    printf("\033[1;31m\nInvalid Input!\033[33m");
-                    spacing();
-                    printf("\033[1;31mTry again.....\033[33m\n");
-                    break;
-                }
-            }
-            if (rounds1 == 100)
-            {
-                printf("\n");
-                spacing();
-                printf("          Player 1 Wins! Congratulations🎉\n");
-                printf("\n\n");
-                break;
-            }
-        }
-        player2();
-        if (count2 <= 0)
-        {
-            while (1)
-            {
-                roll1 = getch();
-                if (roll1 == '\r')
-                {
-                    int min = 1;
-                    int max = 6;
-
-                    srand(time(NULL));
-                    int randomNumber = min + rand() % (max - min + 1);
-                    randnum1 = randomNumber;
-                    clearScreen();
-                    dice(randnum1);
-
-                    if (randnum1 == 6)
+                    else
                     {
-                        rounds2 = rounds2 + 1;
+                        spacing();
+                        printf("\033[1;31mInvalid Input!\033[33m");
+                        spacing();
+                        printf("\033[1;31mTry again.....\033[33m\n");
+                    }
+                }
+            }
+            else
+            {
+                while (1)
+                {
+                    roll1 = getch();
+                    if (roll1 == '\t')
+                    {
+                        int min = 1;
+                        int max = 6;
+
+                        srand(time(NULL));
+                        int randomNumber = min + rand() % (max - min + 1);
+                        randnum1 = randomNumber;
+                        clearScreen();
+                        dice(randnum1);
+                        if (rounds2 + randnum1 <= 100)
+                        {
+                            rounds2 += randnum1;
+                            snakesLadders(&rounds2);
+                        }
                         table(a, rounds1, rounds2);
-                        count2++;
                         break;
                     }
                     else
                     {
                         spacing();
-                        printf("Bring up 6 to get the progress started\n");
-                        break;
+                        printf("\033[1;31mInvalid Input!\033[0m");
+                        spacing();
+                        printf("\033[1;31mTry again.....\033[0m\n");
                     }
                 }
-                else
+                if (rounds2 == 100)
                 {
+                    printf("\n");
                     spacing();
-                    printf("\033[1;31mInvalid Input!\033[33m");
-                    spacing();
-                    printf("\033[1;31mTry again.....\033[33m\n");
+                    printf("          Player 2 Wins! Congratulations🎉\n");
+                    printf("\n\n");
+                    win = 1;
+                    break;
                 }
             }
         }
-        else
+        if (win == 1)
         {
-            while (1)
+            spacing();
+            printf("Do you want to play again....");
+            spacing();
+            printf("y/n\n");
+            choice = getch();
+            if (choice == 'y' || choice == 'Y')
             {
-                roll1 = getch();
-                if (roll1 == '\r')
-                {
-                    int min = 1;
-                    int max = 6;
-
-                    srand(time(NULL));
-                    int randomNumber = min + rand() % (max - min + 1);
-                    randnum1 = randomNumber;
-                    clearScreen();
-                    dice(randnum1);
-                    if (rounds2 + randnum1 <= 100)
-                    {
-                        rounds2 += randnum1;
-                        snakesLadders(&rounds2);
-                    }
-                    table(a, rounds1, rounds2);
-                    break;
-                }
-                else
-                {
-                    spacing();
-                    printf("\033[1;31mInvalid Input!\033[0m");
-                    spacing();
-                    printf("\033[1;31mTry again.....\033[0m\n");
-                }
+                printf("\n");
             }
-            if (rounds2 == 100)
+            else if (choice == 'n' || choice == 'N')
             {
                 printf("\n");
                 spacing();
-                printf("          Player 2 Wins! Congratulations🎉\n");
-                printf("\n\n");
+                printf("Exiting the game");
+                spacing();
+                printf("Thank You for Playing");
                 break;
             }
+            else
+            {
+                while (1)
+                {
+                    spacing();
+                    printf("\033[1;31mInvalid Input!\033[33m");
+                    printf("\033[1;31mTry again.....\033[33m");
+                    choice = getch();
+                    if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N')
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        if (choice == 'n' || choice == 'N')
+        {
+            printf("\n");
+            spacing();
+            printf("Exiting the game");
+            spacing();
+            printf("Thank You for Playing");
+            break;
         }
     }
-
     return 0;
 }
