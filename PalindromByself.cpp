@@ -12,8 +12,8 @@ int main(){
 		}
 		
 	if(rev == originalnum){
-		printf("%d is a palindrom",originalnum);
+		printf("%d is a palindrom",rev);
 	}else{
-		printf("%d is not a palindrom",originalnum);
+		printf("%d is not a palindrom",rev);
 	}
 }
