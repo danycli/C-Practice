@@ -9,14 +9,13 @@ int main() {
 	originalnum=a;
 		while(a!=0){
 			count = a%10;
+			sum = sum *10 + count;
 			a /=10;
-			sum+=count;
 		}
-		printf("%d",sum);
-//		if(count == a){
-//			printf("The number is palindrom");
-//		}else{
-//			printf("The number is not palindrom");
-//		}
+		if(sum == originalnum){
+			printf("The number is palindrom");
+		}else{
+			printf("The number is not palindrom");
+		}
 }
 
