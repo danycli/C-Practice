@@ -133,7 +133,7 @@ void printSongBox(char message[], int songNumber, int isActive) {
     for (int i = 0; i < boxWidth - 2; i++) printf("═");
     printf("╝\n");
     printf("\033[0m"); 
-}
+} 
 
 void printControlsBox() {
     const char* lines[] = {
