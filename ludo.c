@@ -277,7 +277,7 @@ void table(char *a, int rounds1, int rounds2)
         {
             printf("═");
         }
-    }
+    } 
     printf("╝");
 }
 
