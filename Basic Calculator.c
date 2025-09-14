@@ -10,7 +10,7 @@ void printCenteredBox(char message[]) {
     int boxWidth = msgLen +8;
     if (boxWidth < 40) boxWidth = 40;
     int sideSpaces = (CONSOLE_WIDTH - boxWidth) / 2;
-
+ 
     for (int i = 0; i < sideSpaces; i++) printf(" ");
     printf("╔");
     for (int i = 0; i < boxWidth - 2; i++) printf("═");
